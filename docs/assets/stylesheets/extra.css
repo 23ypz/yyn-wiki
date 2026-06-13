@@ -1,0 +1,12 @@
+/* 自定义 yyn 标签样式 */
+.yyn-badge {
+  display: inline-block;
+  margin-left: .4rem;
+  padding: .12rem .45rem;
+  border-radius: 999px;
+  font-size: .65em;
+  font-weight: 700;
+  vertical-align: middle;
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
