@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-label="数位 DP 状态树示意图">
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker><style>.node{fill:#eef3ff;stroke:#3f51b5;stroke-width:2;rx:10;ry:10}.lim{fill:#fff3cd;stroke:#c99a00;stroke-width:2;rx:10;ry:10}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:17px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:14px;fill:#555}.edge{stroke:#777;stroke-width:2}.arr{stroke:#3f51b5;stroke-width:2.3;fill:none;marker-end:url(#arrow)}</style></defs>
+  <text x="40" y="42" class="txt">数位 DP：从高位到低位枚举数字</text>
+  <rect x="350" y="70" width="200" height="48" class="lim"/><text x="450" y="101" text-anchor="middle" class="txt">i=0, limit=True</text>
+  <rect x="115" y="165" width="200" height="48" class="node"/><text x="215" y="196" text-anchor="middle" class="txt">选更小 digit</text>
+  <rect x="585" y="165" width="200" height="48" class="lim"/><text x="685" y="196" text-anchor="middle" class="txt">选上界 digit</text>
+  <rect x="115" y="260" width="200" height="48" class="node"/><text x="215" y="291" text-anchor="middle" class="txt">limit=False</text>
+  <rect x="585" y="260" width="200" height="48" class="lim"/><text x="685" y="291" text-anchor="middle" class="txt">limit=True</text>
+  <path d="M385 118 L260 165" class="arr"/><path d="M515 118 L640 165" class="arr"/><path d="M215 213 L215 258" class="arr"/><path d="M685 213 L685 258" class="arr"/>
+  <text x="68" y="135" class="sub">一旦填了比上界小的数，后面每位都可 0..9</text>
+  <text x="575" y="135" class="sub">若贴着上界填，下一位仍受限制</text>
+  <text x="355" y="335" class="sub">常见状态：dfs(i, is_num, is_limit, 其它统计量)</text>
+</svg>

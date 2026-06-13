@@ -10,3 +10,103 @@
   background: var(--md-primary-fg-color);
   color: var(--md-primary-bg-color);
 }
+
+
+/* 算法讲解页图示 */
+.algo-figure {
+  margin: 1.2rem 0;
+  text-align: center;
+}
+.algo-figure img {
+  max-width: 100%;
+  border-radius: .35rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.algo-figure figcaption {
+  margin-top: .35rem;
+  color: var(--md-default-fg-color--light);
+  font-size: .85rem;
+}
+
+/* 手动图片轮播组件 */
+.yyn-carousel {
+  margin: 1.25rem 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: .55rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .06);
+  overflow: hidden;
+}
+
+.yyn-carousel-viewport {
+  position: relative;
+  padding: .75rem;
+}
+
+.yyn-carousel-slide {
+  display: none;
+}
+
+.yyn-carousel-slide.is-active {
+  display: block;
+}
+
+.yyn-carousel-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: .35rem;
+  background: #fff;
+}
+
+.yyn-carousel-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  padding: .55rem .75rem .75rem;
+}
+
+.yyn-carousel-prev,
+.yyn-carousel-next {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 999px;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 .75rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-primary-fg-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.yyn-carousel-prev:hover,
+.yyn-carousel-next:hover {
+  background: var(--md-accent-fg-color--transparent);
+}
+
+.yyn-carousel-counter {
+  min-width: 4.2rem;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  font-size: .82rem;
+}
+
+.yyn-carousel-caption {
+  padding: 0 .9rem .85rem;
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  font-size: .85rem;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 700px) {
+  .yyn-carousel-viewport {
+    padding: .45rem;
+  }
+  .yyn-carousel-toolbar {
+    gap: .45rem;
+  }
+}

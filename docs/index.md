@@ -61,3 +61,9 @@ int main() {
 
 顶部导航栏显示这些大类，左侧导航栏只显示当前大类下的小类页面。后续你只需要继续修改 `docs/algorithm-templates/` 目录下的 Markdown 文件即可。
 
+
+
+## 最近更新
+
+- 动态规划栏目已扩写为讲解型页面，包含公式、图示、复杂度和常见易错点。
+- 入口：[动态规划总览](algorithm-templates/dynamic-programming.md)

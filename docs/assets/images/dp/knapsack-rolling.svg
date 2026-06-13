@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" role="img" aria-label="背包一维滚动数组枚举方向示意图">
+  <defs><marker id="arrB" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker><marker id="arrR" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#c62828"/></marker><style>.cell{fill:#fff;stroke:#999}.hi{fill:#fff3cd;stroke:#c99a00}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:18px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}.blue{stroke:#3f51b5;stroke-width:3;fill:none;marker-end:url(#arrB)}.red{stroke:#c62828;stroke-width:3;fill:none;marker-end:url(#arrR)}</style></defs>
+  <text x="40" y="45" class="txt">一维背包的关键：容量 j 的枚举方向</text>
+  <text x="55" y="92" class="txt">0-1 背包：倒序枚举</text>
+  <g transform="translate(70,115)">
+    <rect x="0" y="0" width="70" height="45" class="cell"/><text x="35" y="29" text-anchor="middle" class="txt">0</text>
+    <rect x="70" y="0" width="70" height="45" class="cell"/><text x="105" y="29" text-anchor="middle" class="txt">1</text>
+    <rect x="140" y="0" width="70" height="45" class="cell"/><text x="175" y="29" text-anchor="middle" class="txt">2</text>
+    <rect x="210" y="0" width="70" height="45" class="hi"/><text x="245" y="29" text-anchor="middle" class="txt">3</text>
+    <rect x="280" y="0" width="70" height="45" class="cell"/><text x="315" y="29" text-anchor="middle" class="txt">4</text>
+    <rect x="350" y="0" width="70" height="45" class="cell"/><text x="385" y="29" text-anchor="middle" class="txt">5</text>
+    <path d="M405 -20 L30 -20" class="blue"/>
+  </g>
+  <text x="520" y="140" class="sub">避免同一物品在本轮被重复使用</text>
+  <text x="55" y="215" class="txt">完全背包：正序枚举</text>
+  <g transform="translate(70,235)">
+    <rect x="0" y="0" width="70" height="45" class="cell"/><text x="35" y="29" text-anchor="middle" class="txt">0</text>
+    <rect x="70" y="0" width="70" height="45" class="cell"/><text x="105" y="29" text-anchor="middle" class="txt">1</text>
+    <rect x="140" y="0" width="70" height="45" class="cell"/><text x="175" y="29" text-anchor="middle" class="txt">2</text>
+    <rect x="210" y="0" width="70" height="45" class="hi"/><text x="245" y="29" text-anchor="middle" class="txt">3</text>
+    <rect x="280" y="0" width="70" height="45" class="cell"/><text x="315" y="29" text-anchor="middle" class="txt">4</text>
+    <rect x="350" y="0" width="70" height="45" class="cell"/><text x="385" y="29" text-anchor="middle" class="txt">5</text>
+    <path d="M20 -20 L395 -20" class="red"/>
+  </g>
+  <text x="520" y="260" class="sub">允许本轮更新后的 dp[j-w] 再次转移</text>
+</svg>

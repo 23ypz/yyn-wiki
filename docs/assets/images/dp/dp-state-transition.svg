@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-label="动态规划状态转移示意图">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3f51b5" />
+    </marker>
+    <style>
+      .box{fill:#f7f8ff;stroke:#3f51b5;stroke-width:2;rx:12;ry:12}
+      .now{fill:#e8f0ff;stroke:#1a73e8;stroke-width:3;rx:12;ry:12}
+      .txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:20px;fill:#222}
+      .sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}
+      .arr{stroke:#3f51b5;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect x="35" y="70" width="160" height="90" class="box"/>
+  <text x="115" y="112" text-anchor="middle" class="txt">子问题 A</text>
+  <text x="115" y="140" text-anchor="middle" class="sub">已计算</text>
+  <rect x="35" y="190" width="160" height="70" class="box"/>
+  <text x="115" y="232" text-anchor="middle" class="txt">子问题 B</text>
+  <rect x="360" y="120" width="180" height="95" class="now"/>
+  <text x="450" y="162" text-anchor="middle" class="txt">当前状态</text>
+  <text x="450" y="192" text-anchor="middle" class="sub">f[i] 或 f[i][j]</text>
+  <rect x="705" y="120" width="160" height="95" class="box"/>
+  <text x="785" y="162" text-anchor="middle" class="txt">答案状态</text>
+  <text x="785" y="192" text-anchor="middle" class="sub">不断转移得到</text>
+  <path d="M195 115 C250 115 285 145 355 158" class="arr"/>
+  <path d="M195 225 C270 220 300 195 355 178" class="arr"/>
+  <path d="M540 168 C600 168 640 168 700 168" class="arr"/>
+  <text x="272" y="90" class="sub">状态转移方程</text>
+  <text x="574" y="145" class="sub">按拓扑/枚举顺序推进</text>
+</svg>

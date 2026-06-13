@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="340" viewBox="0 0 900 340" role="img" aria-label="树形 DP 子树合并示意图">
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker><style>.node{fill:#eef3ff;stroke:#3f51b5;stroke-width:2}.cur{fill:#fff3cd;stroke:#c99a00;stroke-width:3}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:18px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}.edge{stroke:#777;stroke-width:2}.arr{stroke:#3f51b5;stroke-width:2.5;fill:none;marker-end:url(#arrow)}</style></defs>
+  <text x="40" y="45" class="txt">树形 DP：先算子树，再合并到父节点</text>
+  <line x1="270" y1="115" x2="160" y2="210" class="edge"/><line x1="270" y1="115" x2="270" y2="210" class="edge"/><line x1="270" y1="115" x2="380" y2="210" class="edge"/>
+  <circle cx="270" cy="110" r="38" class="cur"/><text x="270" y="116" text-anchor="middle" class="txt">u</text>
+  <circle cx="160" cy="220" r="34" class="node"/><text x="160" y="226" text-anchor="middle" class="txt">v1</text>
+  <circle cx="270" cy="220" r="34" class="node"/><text x="270" y="226" text-anchor="middle" class="txt">v2</text>
+  <circle cx="380" cy="220" r="34" class="node"/><text x="380" y="226" text-anchor="middle" class="txt">v3</text>
+  <path d="M160 185 C170 155 210 130 235 118" class="arr"/><path d="M270 184 L270 150" class="arr"/><path d="M380 185 C370 155 330 130 305 118" class="arr"/>
+  <text x="505" y="115" class="txt">常见形式</text>
+  <text x="505" y="155" class="sub">1. 先 DFS 到叶子</text>
+  <text x="505" y="185" class="sub">2. 每个孩子 v 返回 f[v]</text>
+  <text x="505" y="215" class="sub">3. 父节点 u 根据所有孩子更新 f[u]</text>
+  <text x="505" y="260" class="sub">如：f[u][0], f[u][1] 分别表示不选/选 u</text>
+</svg>

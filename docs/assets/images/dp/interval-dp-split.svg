@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="280" viewBox="0 0 900 280" role="img" aria-label="区间 DP 枚举断点示意图">
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker><style>.bar{fill:#eef3ff;stroke:#3f51b5;stroke-width:2;rx:8;ry:8}.left{fill:#dff5e3;stroke:#2e7d32;stroke-width:2}.right{fill:#fff3cd;stroke:#c99a00;stroke-width:2}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:20px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}.line{stroke:#3f51b5;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <text x="40" y="45" class="txt">区间 DP：把 [l, r] 拆成两个更小区间</text>
+  <rect x="100" y="95" width="650" height="55" class="bar"/>
+  <text x="110" y="130" class="txt">l</text><text x="728" y="130" class="txt">r</text>
+  <line x1="430" y1="90" x2="430" y2="160" stroke="#c62828" stroke-width="3"/>
+  <text x="425" y="185" class="txt">k</text>
+  <rect x="100" y="200" width="330" height="45" class="left"/>
+  <rect x="430" y="200" width="320" height="45" class="right"/>
+  <text x="265" y="230" text-anchor="middle" class="txt">f[l][k]</text>
+  <text x="590" y="230" text-anchor="middle" class="txt">f[k+1][r]</text>
+  <path d="M430 160 C430 175 410 185 330 198" class="line"/>
+  <path d="M430 160 C430 175 455 185 520 198" class="line"/>
+  <text x="90" y="75" class="sub">枚举断点 k，合并左右区间的答案</text>
+  <text x="520" y="185" class="sub">常见式：f[l][r] = min/max(f[l][k] + f[k+1][r] + cost)</text>
+</svg>

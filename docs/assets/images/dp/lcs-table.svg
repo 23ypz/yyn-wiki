@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" role="img" aria-label="LCS 状态表格示意图">
+  <defs><style>.grid{fill:#fff;stroke:#999;stroke-width:1}.head{fill:#eef3ff}.hi{fill:#dff5e3}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:18px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}.eq{font-family:monospace;font-size:17px;fill:#333}</style></defs>
+  <text x="40" y="40" class="txt">LCS：二维表 f[i][j]</text>
+  <text x="40" y="68" class="sub">横向表示 b 的前 j 个元素，纵向表示 a 的前 i 个元素</text>
+  <g transform="translate(70,100)">
+    <rect x="0" y="0" width="60" height="40" class="grid head"/><text x="30" y="26" text-anchor="middle" class="txt">i/j</text>
+    <rect x="60" y="0" width="60" height="40" class="grid head"/><text x="90" y="26" text-anchor="middle" class="txt">0</text>
+    <rect x="120" y="0" width="60" height="40" class="grid head"/><text x="150" y="26" text-anchor="middle" class="txt">1</text>
+    <rect x="180" y="0" width="60" height="40" class="grid head"/><text x="210" y="26" text-anchor="middle" class="txt">2</text>
+    <rect x="240" y="0" width="60" height="40" class="grid head"/><text x="270" y="26" text-anchor="middle" class="txt">3</text>
+    <rect x="300" y="0" width="60" height="40" class="grid head"/><text x="330" y="26" text-anchor="middle" class="txt">4</text>
+    <rect x="0" y="40" width="60" height="40" class="grid head"/><text x="30" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="0" y="80" width="60" height="40" class="grid head"/><text x="30" y="106" text-anchor="middle" class="txt">1</text>
+    <rect x="0" y="120" width="60" height="40" class="grid head"/><text x="30" y="146" text-anchor="middle" class="txt">2</text>
+    <rect x="0" y="160" width="60" height="40" class="grid head"/><text x="30" y="186" text-anchor="middle" class="txt">3</text>
+    <rect x="60" y="40" width="60" height="40" class="grid"/><text x="90" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="120" y="40" width="60" height="40" class="grid"/><text x="150" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="180" y="40" width="60" height="40" class="grid"/><text x="210" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="240" y="40" width="60" height="40" class="grid"/><text x="270" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="300" y="40" width="60" height="40" class="grid"/><text x="330" y="66" text-anchor="middle" class="txt">0</text>
+    <rect x="60" y="80" width="60" height="40" class="grid"/><text x="90" y="106" text-anchor="middle" class="txt">0</text>
+    <rect x="120" y="80" width="60" height="40" class="grid hi"/><text x="150" y="106" text-anchor="middle" class="txt">1</text>
+    <rect x="180" y="80" width="60" height="40" class="grid"/><text x="210" y="106" text-anchor="middle" class="txt">1</text>
+    <rect x="240" y="80" width="60" height="40" class="grid"/><text x="270" y="106" text-anchor="middle" class="txt">1</text>
+    <rect x="300" y="80" width="60" height="40" class="grid"/><text x="330" y="106" text-anchor="middle" class="txt">1</text>
+    <rect x="60" y="120" width="60" height="40" class="grid"/><text x="90" y="146" text-anchor="middle" class="txt">0</text>
+    <rect x="120" y="120" width="60" height="40" class="grid"/><text x="150" y="146" text-anchor="middle" class="txt">1</text>
+    <rect x="180" y="120" width="60" height="40" class="grid hi"/><text x="210" y="146" text-anchor="middle" class="txt">2</text>
+    <rect x="240" y="120" width="60" height="40" class="grid"/><text x="270" y="146" text-anchor="middle" class="txt">2</text>
+    <rect x="300" y="120" width="60" height="40" class="grid"/><text x="330" y="146" text-anchor="middle" class="txt">2</text>
+    <rect x="60" y="160" width="60" height="40" class="grid"/><text x="90" y="186" text-anchor="middle" class="txt">0</text>
+    <rect x="120" y="160" width="60" height="40" class="grid"/><text x="150" y="186" text-anchor="middle" class="txt">1</text>
+    <rect x="180" y="160" width="60" height="40" class="grid"/><text x="210" y="186" text-anchor="middle" class="txt">2</text>
+    <rect x="240" y="160" width="60" height="40" class="grid hi"/><text x="270" y="186" text-anchor="middle" class="txt">3</text>
+    <rect x="300" y="160" width="60" height="40" class="grid"/><text x="330" y="186" text-anchor="middle" class="txt">3</text>
+  </g>
+  <text x="520" y="130" class="eq">a[i-1] = b[j-1]：</text>
+  <text x="520" y="160" class="eq">f[i][j] = f[i-1][j-1] + 1</text>
+  <text x="520" y="210" class="eq">否则：</text>
+  <text x="520" y="240" class="eq">f[i][j] = max(f[i-1][j], f[i][j-1])</text>
+</svg>

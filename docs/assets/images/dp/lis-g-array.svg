@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="LIS 贪心数组 g 的含义示意图">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker>
+    <style>
+      .cell{fill:#eef3ff;stroke:#3f51b5;stroke-width:2;rx:8;ry:8}.new{fill:#fff3cd;stroke:#c99a00;stroke-width:2;rx:8;ry:8}.txt{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:20px;fill:#222}.sub{font-family:Arial,'Noto Sans SC','Microsoft YaHei',sans-serif;font-size:15px;fill:#555}.arr{stroke:#3f51b5;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <text x="40" y="45" class="txt">处理序列：1, 4, 2, 2, 5, 6</text>
+  <text x="40" y="85" class="sub">g[k] 表示长度为 k+1 的上升子序列的最小结尾值</text>
+  <g transform="translate(80,125)">
+    <rect width="80" height="55" class="cell"/><text x="40" y="35" text-anchor="middle" class="txt">1</text>
+    <rect x="100" width="80" height="55" class="new"/><text x="140" y="35" text-anchor="middle" class="txt">2</text>
+    <rect x="200" width="80" height="55" class="cell"/><text x="240" y="35" text-anchor="middle" class="txt">5</text>
+    <rect x="300" width="80" height="55" class="cell"/><text x="340" y="35" text-anchor="middle" class="txt">6</text>
+    <text x="40" y="85" text-anchor="middle" class="sub">长度 1</text><text x="140" y="85" text-anchor="middle" class="sub">长度 2</text><text x="240" y="85" text-anchor="middle" class="sub">长度 3</text><text x="340" y="85" text-anchor="middle" class="sub">长度 4</text>
+  </g>
+  <path d="M510 150 C570 105 650 105 725 135" class="arr"/>
+  <text x="650" y="100" class="sub">遇到 x=2，用二分替换原来的 4</text>
+  <text x="650" y="180" class="sub">结尾更小，后续更容易接上更大的数</text>
+</svg>

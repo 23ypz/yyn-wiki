@@ -2,101 +2,160 @@
 tags:
   - yyn
   - 算法模板
+  - 动态规划
 ---
 
-# 树形DP
-**算法介绍：**
-树形动态规划是在树形结构上进行动态规划的技术，通常通过DFS或递推的方式在树上进行状态转移。
+# 树形 DP
 
-**应用场景：**
-- 树的直径计算
-- 树上路径统计
-- 树的最优解问题
-- 树的连通性问题
+树形 DP 是在树结构上进行的动态规划。由于树没有环，一个节点的子树之间天然相互独立，因此很多问题可以先计算子节点，再把信息合并到父节点。
 
-### 递归求解
+## 基本思想
+
+树形 DP 通常以某个节点 \(u\) 为根，定义：
+
+\[
+f[u] = \text{以 } u \text{ 为根的子树中的答案}
+\]
+
+如果状态还需要区分选择情况，可以写成：
+
+\[
+f[u][0],\ f[u][1]
+\]
+
+例如：
+
+- \(f[u][0]\)：不选节点 \(u\) 时，子树的最优值；
+- \(f[u][1]\)：选节点 \(u\) 时，子树的最优值。
+
+<figure class="algo-figure" markdown>
+![树形 DP 子树合并示意图](../assets/images/dp/tree-dp-merge.svg)
+<figcaption>图 1：树形 DP 常在 DFS 回溯阶段把孩子的状态合并到父节点。</figcaption>
+</figure>
+
+## 例：没有上司的舞会模型
+
+给定一棵树，每个点有权值 \(val[u]\)。选择一些点，使得任意父子节点不能同时被选，求最大权值和。
+
+状态定义：
+
+\[
+f[u][0] = \text{不选 } u \text{ 时，} u \text{ 子树内的最大权值和}
+\]
+
+\[
+f[u][1] = \text{选 } u \text{ 时，} u \text{ 子树内的最大权值和}
+\]
+
+转移：
+
+如果选 \(u\)，孩子都不能选：
+
+\[
+f[u][1] = val[u] + \sum_{v\in son(u)} f[v][0]
+\]
+
+如果不选 \(u\)，每个孩子可选可不选，取较大值：
+
+\[
+f[u][0] = \sum_{v\in son(u)} \max(f[v][0], f[v][1])
+\]
+
+代码：
 
 ```python
-# 求解树的直径
-# 对每个节点维护最大和次大子树长度
-def main():
-    n = int(input())
-    g = [[] for i in range(n)]
-    for i in range(n - 1):
-        u, v = map(int, input().split())
-        u, v = u - 1, v - 1  # 转换为0-indexed
-        g[u].append(v)
-        g[v].append(u)
+n = 5
+val = [0, 3, 2, 1, 10, 1]  # 节点权值，1-indexed
+edges = [(1, 2), (1, 3), (2, 4), (2, 5)]
 
-    ans = 0
+g = [[] for _ in range(n + 1)]
+for u, v in edges:
+    g[u].append(v)
+    g[v].append(u)
 
-    def dfs(fa, x):
-        """DFS求解树的直径"""
-        nonlocal ans
-        mx = 0  # 当前节点的最大子树长度
-        for y in g[x]:
-            if y != fa:
-                l = dfs(x, y) + 1  # 子树长度
-                ans = max(ans, mx + l)  # 更新答案：经过当前节点的路径
-                mx = max(mx, l)  # 更新最大子树长度
-        return mx
+f = [[0, 0] for _ in range(n + 1)]
 
-    dfs(-1, 0)  # 从根节点开始
-    print("树的直径:", ans)
+def dfs(u, fa):
+    f[u][1] = val[u]
+    for v in g[u]:
+        if v == fa:
+            continue
+        dfs(v, u)
+        f[u][0] += max(f[v][0], f[v][1])
+        f[u][1] += f[v][0]
 
-# 示例使用（需要手动输入数据）
-# main()
+dfs(1, 0)
+print(max(f[1][0], f[1][1]))
 ```
 
-### 递推求解
+## 递归求解与递推求解
+
+### 递归写法
+
+递归写法直观，适合竞赛中大多数树形 DP：
 
 ```python
-# 求解树的直径
-# 对每个节点维护最大和次大子树长度
-def main():
-    n = int(input())
-    g = [[] for i in range(n)]
-    for i in range(n - 1):
-        u, v = map(int, input().split())
-        u, v = u - 1, v - 1  # 转换为0-indexed
-        g[u].append(v)
-        g[v].append(u)
-
-    # BFS构建拓扑序
-    stk = [1]
-    order = []
-    pa = [i for i in range(n + 1)]
-    while stk:
-        u = stk.pop()
-        order.append(u)
-        for v in g[u]:
-            if pa[u] != v:
-                pa[v] = u
-                stk.append(v)
-
-    # dp[i][0]表示次大值，dp[i][1]表示最大值
-    dp = [[0] * 2 for i in range(n + 1)]
-    for u in reversed(order[1:]):  # 从叶子节点开始递推
-        v = pa[u]
-        dp[u][1] += 1
-        if dp[v][1] < dp[u][1]:
-            dp[v][1], dp[v][0] = dp[u][1], dp[v][1]
-        else:
-            if dp[v][0] < dp[u][1]:
-                dp[v][0] = dp[u][1]
-    dp[1][1] += 1
-    
-    ans = 0
-    for i in range(1, n + 1):
-        ans = max(ans, sum(dp[i]) - 1)
-    print("树的直径:", ans)
-
-# 示例使用（需要手动输入数据）
-# main()
+def dfs(u, fa):
+    # 初始化 f[u]
+    for v in g[u]:
+        if v == fa:
+            continue
+        dfs(v, u)
+        # 用 f[v] 更新 f[u]
 ```
 
----
+### 非递归写法
 
-!!! info "来源"
-    本页由你上传的 `算法模板总结.md` 拆分整理而来，便于在知识库中导航和搜索。
+如果递归深度可能过大，可以先得到遍历顺序，再逆序处理：
 
+```python
+parent = [0] * (n + 1)
+order = [1]
+parent[1] = -1
+
+for u in order:
+    for v in g[u]:
+        if v == parent[u]:
+            continue
+        parent[v] = u
+        order.append(v)
+
+# 逆序时，孩子一定先于父节点被处理
+for u in reversed(order):
+    # 合并 u 的所有孩子
+    pass
+```
+
+## 背包型树形 DP
+
+如果状态带有“选了多少个点”这类容量维度，常写成：
+
+\[
+f[u][k] = \text{在 } u \text{ 子树内选 } k \text{ 个点的最优值}
+\]
+
+合并孩子时类似分组背包：
+
+\[
+f[u][i+j] = \max(f[u][i+j], f[u][i] + f[v][j])
+\]
+
+这类问题的复杂度通常与子树大小和容量有关。
+
+## 复杂度
+
+普通树形 DP 每条边只被 DFS 访问常数次，因此：
+
+\[
+\text{时间复杂度}=O(n),\qquad \text{空间复杂度}=O(n)
+\]
+
+如果有容量维度，例如 \(f[u][k]\)，复杂度通常会上升到 \(O(nK^2)\) 或通过优化降到 \(O(nK)\)，要根据合并方式判断。
+
+## 易错点
+
+!!! warning "常见错误"
+    - 无向树 DFS 时忘记传父节点，导致死循环。
+    - 初始化状态的位置错误。
+    - 合并多个孩子时，没有使用临时数组，导致同一个孩子被重复合并。
+    - 树根选择不影响答案的问题，不要误把根限制成特殊状态。

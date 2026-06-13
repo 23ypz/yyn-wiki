@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="380" viewBox="0 0 960 380" role="img" aria-label="0-1 背包：倒序枚举容量">
+<defs>
+      <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="3.5" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,7 L10,3.5 z" fill="#3f51b5" />
+      </marker>
+    </defs>
+<rect x="0" y="0" width="960" height="380" rx="18" fill="#ffffff"/>
+<text x="48" y="48" font-size="24" font-weight="700" fill="#222">0-1 背包：倒序枚举容量</text>
+<text x="48" y="82" font-size="17" fill="#555">当前物品只能使用一次，所以从 W 向 w 枚举。</text>
+<rect x="150" y="175" width="72" height="54" fill="#fbfbfb" stroke="#bdbdbd"/>
+<text x="186.0" y="209" text-anchor="middle" font-size="19" fill="#222">0</text>
+<rect x="222" y="175" width="72" height="54" fill="#fbfbfb" stroke="#bdbdbd"/>
+<text x="258.0" y="209" text-anchor="middle" font-size="19" fill="#222">1</text>
+<rect x="294" y="175" width="72" height="54" fill="#fbfbfb" stroke="#bdbdbd"/>
+<text x="330.0" y="209" text-anchor="middle" font-size="19" fill="#222">2</text>
+<rect x="366" y="175" width="72" height="54" fill="#fff4cc" stroke="#f4a400"/>
+<text x="402.0" y="209" text-anchor="middle" font-size="19" fill="#222">3</text>
+<rect x="438" y="175" width="72" height="54" fill="#fbfbfb" stroke="#bdbdbd"/>
+<text x="474.0" y="209" text-anchor="middle" font-size="19" fill="#222">4</text>
+<rect x="510" y="175" width="72" height="54" fill="#fbfbfb" stroke="#bdbdbd"/>
+<text x="546.0" y="209" text-anchor="middle" font-size="19" fill="#222">5</text>
+<text x="150" y="260" font-size="15" fill="#666">容量 j</text>
+<text x="342" y="260" font-size="15" fill="#666">当前演示 j = 3</text>
+<path d="M610 132 C 490 120, 300 120, 180 132" fill="none" stroke="#3f51b5" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="395" y="116" text-anchor="middle" font-size="17" fill="#3f51b5" font-weight="700">倒序：从大容量走向小容量</text>
+<rect x="620" y="160" width="270" height="115" rx="12" fill="#f5f7ff" stroke="#d7dcff"/>
+<text x="642" y="190" font-size="16" fill="#333">0-1 背包倒序枚举。</text>
+<text x="642" y="216" font-size="16" fill="#333">计算 dp[j] 时，dp[j-w] 仍是上一轮状态，</text>
+<text x="642" y="242" font-size="16" fill="#333">当前物品不会被重复使用。</text>
+</svg>
