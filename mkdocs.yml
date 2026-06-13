@@ -1,7 +1,6 @@
 site_name: YYN Wiki
-site_description: yyn 的轻量级算法知识站
+site_description: yyn 的 Python 算法知识库
 site_url: https://23ypz.github.io/yyn-wiki/
-
 repo_url: https://github.com/23ypz/yyn-wiki
 repo_name: 23ypz/yyn-wiki
 edit_uri: edit/main/docs/
@@ -65,10 +64,36 @@ extra_javascript:
 extra_css:
   - assets/stylesheets/extra.css
 
+# 顶部导航采用“大类”结构；左侧导航只显示当前大类下的小类页面。
 nav:
   - 首页: index.md
-  - 图论:
-      - 最短路: graph/shortest-path.md
+  - 总览: algorithm-templates/index.md
+  - 基础:
+      - 二分: algorithm-templates/binary-search.md
+      - 排序: algorithm-templates/sorting.md
+      - 位运算: algorithm-templates/bitwise.md
+  - 前缀与差分:
+      - 前缀和: algorithm-templates/prefix-sum.md
+      - 差分: algorithm-templates/difference.md
+  - 数据结构:
+      - 并查集: algorithm-templates/dsu.md
+      - 堆: algorithm-templates/heap.md
+      - 单调数据结构: algorithm-templates/monotonic-structures.md
+      - 有序列表: algorithm-templates/sorted-list.md
+      - 树形数据结构: algorithm-templates/tree-data-structures.md
+  - 图论与树:
+      - 广度优先搜索 BFS: algorithm-templates/bfs.md
+      - 深度优先搜索 DFS: algorithm-templates/dfs.md
+      - 最短路: algorithm-templates/shortest-path.md
+      - 最近公共祖先: algorithm-templates/lca.md
+  - 动态规划:
+      - 简单 DP: algorithm-templates/simple-dp.md
+      - 背包 DP: algorithm-templates/knapsack-dp.md
+      - 区间 DP: algorithm-templates/interval-dp.md
+      - 树形 DP: algorithm-templates/tree-dp.md
+      - 数位 DP: algorithm-templates/digit-dp.md
   - 数学:
-      - 组合数学: math/combinatorics.md
+      - 数论基础: algorithm-templates/number-theory.md
+  - 字符串:
+      - 字符串基础: algorithm-templates/string-basics.md
   - 标签: tags.md

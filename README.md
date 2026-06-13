@@ -160,3 +160,18 @@ mkdocs gh-deploy --force
 ```
 
 这会把构建结果部署到 `gh-pages` 分支。
+
+## 已导入的算法模板知识库
+
+本版本已经把 `算法模板总结.md` 拆分到 `docs/algorithm-templates/` 目录中，并在 `mkdocs.yml` 里添加了导航。
+
+如果你已经把项目上传到 GitHub，更新步骤：
+
+```bash
+git add .
+git commit -m "add python algorithm templates"
+git push
+```
+
+GitHub Actions 会自动重新构建并部署站点。
+

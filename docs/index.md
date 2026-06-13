@@ -45,3 +45,19 @@ int main() {
 
 !!! tip "提示"
     你可以在 `docs/` 目录下新增 Markdown 文件，然后在 `mkdocs.yml` 的 `nav` 里加入它。
+
+## Python 算法模板知识库
+
+已经导入你的 Python 算法模板总结，并按 OI Wiki 风格拆成顶部大类导航：
+
+- [总览](algorithm-templates/index.md)
+- 基础：二分、排序、位运算
+- 前缀与差分：前缀和、差分
+- 数据结构：并查集、堆、单调数据结构、有序列表、树形数据结构
+- 图论与树：BFS、DFS、最短路、最近公共祖先
+- 动态规划：简单 DP、背包 DP、区间 DP、树形 DP、数位 DP
+- 数学：数论基础
+- 字符串：字符串基础
+
+顶部导航栏显示这些大类，左侧导航栏只显示当前大类下的小类页面。后续你只需要继续修改 `docs/algorithm-templates/` 目录下的 Markdown 文件即可。
+
