@@ -93,3 +93,16 @@ tags:
 
 !!! tip "维护建议"
     以后新增模板时，建议新建或修改对应页面，然后同步更新 `mkdocs.yml` 的导航。
+
+
+## 图论与树
+
+图论与树章节已经拆分为 BFS、DFS、最短路和树上问题等独立页面，便于按算法类型查阅。
+
+- [图论与树总览](graph-tree.md)
+- [网格 BFS](grid-bfs.md)
+- [无权图最短路](unweighted-shortest-path.md)
+- [Dijkstra 算法](dijkstra.md)
+- [Floyd 算法](floyd.md)
+- [LCA 倍增](lca-binary-lifting.md)
+- [树上差分](tree-difference.md)

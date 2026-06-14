@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="460" viewBox="0 0 1000 460"><style>
+text { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #243447; }
+.small { font-size: 16px; }
+.normal { font-size: 20px; }
+.big { font-size: 26px; font-weight: 700; }
+.muted { fill: #5b6b7a; }
+.gray { fill: #f4f5f7; stroke: #c7ccd1; stroke-width: 1.5; }
+.edge { stroke: #768399; stroke-width: 2.2; }
+.arrow { stroke: #3757d6; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+.arrow2 { stroke: #d64242; stroke-width: 3; fill: none; marker-end: url(#arrow2); }
+.white { fill: white; }
+line.grid { stroke: #cfd6e6; stroke-width: 2; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#3757d6"/></marker>
+  <marker id="arrow2" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#d64242"/></marker>
+</defs><rect width="100%" height="100%" fill="#ffffff"/><text x="40" y="48" class="big">LCA 倍增查询过程 · 步骤 2</text><text x="40" y="82" class="normal muted">第一步：让更深的点 8 跳到与 5 相同的深度。</text><line x1="500" y1="90" x2="300" y2="180" class="edge"/><line x1="500" y1="90" x2="700" y2="180" class="edge"/><line x1="300" y1="180" x2="220" y2="280" class="edge"/><line x1="300" y1="180" x2="380" y2="280" class="edge"/><line x1="700" y1="180" x2="620" y2="280" class="edge"/><line x1="700" y1="180" x2="780" y2="280" class="edge"/><line x1="220" y1="280" x2="220" y2="380" class="arrow"/><circle cx="500" cy="90" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="500" y="98" text-anchor="middle" class="normal">1</text><circle cx="300" cy="180" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="300" y="188" text-anchor="middle" class="normal">2</text><circle cx="700" cy="180" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="700" y="188" text-anchor="middle" class="normal">3</text><circle cx="220" cy="280" r="28" fill="#fff3cd" stroke="#e0ad00" stroke-width="3"/><text x="220" y="288" text-anchor="middle" class="normal">4</text><circle cx="380" cy="280" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="380" y="288" text-anchor="middle" class="normal">5</text><circle cx="620" cy="280" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="620" y="288" text-anchor="middle" class="normal">6</text><circle cx="780" cy="280" r="28" fill="#eef3ff" stroke="#4c6fff" stroke-width="3"/><text x="780" y="288" text-anchor="middle" class="normal">7</text><circle cx="220" cy="380" r="28" fill="#fff3cd" stroke="#e0ad00" stroke-width="3"/><text x="220" y="388" text-anchor="middle" class="normal">8</text><rect x="50" y="320" width="390" height="105" rx="14" class="gray"/><rect x="610" y="325" width="320" height="90" rx="14" class="gray"/><text x="80" y="355" class="normal muted">• 先让 8 向上跳 1 层，来到 4。</text><text x="80" y="387" class="normal muted">• 现在 4 和 5 深度相同。</text><text x="640" y="375" class="normal">diff = depth[8] - depth[5] = 1</text></svg>

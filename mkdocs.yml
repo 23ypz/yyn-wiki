@@ -83,10 +83,23 @@ nav:
       - 有序列表: algorithm-templates/sorted-list.md
       - 树形数据结构: algorithm-templates/tree-data-structures.md
   - 图论与树:
-      - 广度优先搜索 BFS: algorithm-templates/bfs.md
-      - 深度优先搜索 DFS: algorithm-templates/dfs.md
-      - 最短路: algorithm-templates/shortest-path.md
-      - 最近公共祖先: algorithm-templates/lca.md
+      - 图论与树总览: algorithm-templates/graph-tree.md
+      - 广度优先搜索 BFS:
+          - 网格 BFS: algorithm-templates/grid-bfs.md
+          - 无权图最短路: algorithm-templates/unweighted-shortest-path.md
+      - 深度优先搜索 DFS:
+          - 连通块大小: algorithm-templates/connected-components.md
+          - 二分图染色: algorithm-templates/bipartite-coloring.md
+          - 图上 DFS: algorithm-templates/graph-dfs.md
+      - 最短路:
+          - Dijkstra 算法: algorithm-templates/dijkstra.md
+          - Floyd 算法: algorithm-templates/floyd.md
+          - 可加边 Dijkstra: algorithm-templates/add-edge-dijkstra.md
+          - 可加边 Floyd: algorithm-templates/add-edge-floyd.md
+      - 树上问题:
+          - LCA 倍增: algorithm-templates/lca-binary-lifting.md
+          - 带权树 LCA: algorithm-templates/weighted-lca.md
+          - 树上差分: algorithm-templates/tree-difference.md
   - 动态规划:
       - 动态规划总览: algorithm-templates/dynamic-programming.md
       - 简单 DP: algorithm-templates/simple-dp.md

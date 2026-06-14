@@ -41,3 +41,20 @@
 
 !!! note "说明"
     这是一个手动标签页。搜索功能会自动索引这些 Markdown 页面。
+
+
+## 图论与树
+
+- [图论与树总览](algorithm-templates/graph-tree.md)
+- [网格 BFS](algorithm-templates/grid-bfs.md)
+- [无权图最短路](algorithm-templates/unweighted-shortest-path.md)
+- [连通块大小](algorithm-templates/connected-components.md)
+- [二分图染色](algorithm-templates/bipartite-coloring.md)
+- [图上 DFS](algorithm-templates/graph-dfs.md)
+- [Dijkstra 算法](algorithm-templates/dijkstra.md)
+- [Floyd 算法](algorithm-templates/floyd.md)
+- [可加边 Dijkstra](algorithm-templates/add-edge-dijkstra.md)
+- [可加边 Floyd](algorithm-templates/add-edge-floyd.md)
+- [LCA 倍增](algorithm-templates/lca-binary-lifting.md)
+- [带权树 LCA](algorithm-templates/weighted-lca.md)
+- [树上差分](algorithm-templates/tree-difference.md)

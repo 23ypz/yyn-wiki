@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker></defs>
+<style>
+text{font-family:Arial,"Microsoft YaHei",sans-serif;font-size:16px;fill:#333}.small{font-size:13px;fill:#555}.title{font-size:20px;font-weight:700}.node{fill:#eef3ff;stroke:#3f51b5;stroke-width:2}.hot{fill:#fff3cd;stroke:#f0ad00;stroke-width:2}.done{fill:#e9f7ef;stroke:#2e7d32;stroke-width:2}.edge{stroke:#59636e;stroke-width:2}.arrow{stroke:#3f51b5;stroke-width:2;marker-end:url(#arrow)}.red{stroke:#d32f2f}.blue{stroke:#1976d2}.green{stroke:#2e7d32}
+</style>
+
+<text x="40" y="36" class="title">Dijkstra 松弛过程</text>
+<circle cx="120" cy="180" r="34" class="done"/><text x="112" y="186">1</text><text x="86" y="230" class="small">dis=0</text>
+<circle cx="300" cy="100" r="34" class="hot"/><text x="292" y="106">2</text><text x="268" y="150" class="small">dis=1</text>
+<circle cx="300" cy="260" r="34" class="node"/><text x="292" y="266">3</text><text x="268" y="310" class="small">dis=5</text>
+<circle cx="500" cy="180" r="34" class="node"/><text x="492" y="186">4</text><text x="468" y="230" class="small">dis=∞</text>
+<line x1="151" y1="166" x2="268" y2="114" class="edge"/><text x="194" y="125" class="small">1</text>
+<line x1="151" y1="194" x2="268" y2="246" class="edge"/><text x="194" y="245" class="small">5</text>
+<line x1="330" y1="116" x2="470" y2="164" class="edge"/><text x="395" y="128" class="small">2</text>
+<line x1="330" y1="244" x2="470" y2="196" class="edge"/><text x="395" y="250" class="small">1</text>
+<rect x="610" y="105" width="250" height="145" rx="12" fill="#f8f9fa" stroke="#ddd"/>
+<text x="630" y="138">选当前未确定最小点</text><text x="630" y="168" class="small">u = 2, dis[u] = 1</text>
+<text x="630" y="203">尝试更新邻居</text><text x="630" y="232" class="small">dis[v] = min(dis[v], dis[u]+w)</text>
+
+</svg>

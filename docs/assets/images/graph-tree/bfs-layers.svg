@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#3f51b5"/></marker></defs>
+<style>
+text{font-family:Arial,"Microsoft YaHei",sans-serif;font-size:16px;fill:#333}.small{font-size:13px;fill:#555}.title{font-size:20px;font-weight:700}.node{fill:#eef3ff;stroke:#3f51b5;stroke-width:2}.hot{fill:#fff3cd;stroke:#f0ad00;stroke-width:2}.done{fill:#e9f7ef;stroke:#2e7d32;stroke-width:2}.edge{stroke:#59636e;stroke-width:2}.arrow{stroke:#3f51b5;stroke-width:2;marker-end:url(#arrow)}.red{stroke:#d32f2f}.blue{stroke:#1976d2}.green{stroke:#2e7d32}
+</style>
+
+<text x="40" y="36" class="title">BFS 按层扩展</text>
+<circle cx="120" cy="170" r="38" class="done"/><text x="107" y="176">S</text><text x="88" y="230" class="small">第 0 层</text>
+<circle cx="280" cy="105" r="34" class="node"/><text x="272" y="111">A</text>
+<circle cx="280" cy="235" r="34" class="node"/><text x="272" y="241">B</text><text x="248" y="290" class="small">第 1 层</text>
+<circle cx="460" cy="85" r="32" class="node"/><text x="452" y="91">C</text>
+<circle cx="460" cy="175" r="32" class="node"/><text x="452" y="181">D</text>
+<circle cx="460" cy="265" r="32" class="node"/><text x="452" y="271">E</text><text x="428" y="325" class="small">第 2 层</text>
+<line x1="158" y1="154" x2="248" y2="117" class="edge"/><line x1="158" y1="186" x2="248" y2="223" class="edge"/>
+<line x1="312" y1="98" x2="428" y2="88" class="edge"/><line x1="312" y1="118" x2="430" y2="162" class="edge"/><line x1="312" y1="236" x2="428" y2="264" class="edge"/>
+<path d="M590 155 C650 110, 720 110, 780 155" fill="none" class="arrow"/><text x="620" y="95" class="small">队列先进先出，保证先处理近的点</text>
+<rect x="590" y="175" width="250" height="72" rx="12" fill="#f8f9fa" stroke="#ddd"/><text x="610" y="207">转移公式</text><text x="610" y="235" class="small">dis[v] = dis[u] + 1</text>
+
+</svg>
