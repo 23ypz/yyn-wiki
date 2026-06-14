@@ -13,31 +13,48 @@ tags:
 f[l][r]
 \]
 
-表示区间 \([l,r]\) 的最优值、方案数或可行性。它常见于“把一个区间拆成两个子区间”或者“先处理内部，再处理两端”的问题。
+它表示区间 \([l,r]\) 的最优值、方案数或可行性。区间 DP 常用于“把一个区间拆成两个子区间”或者“先处理内部，再处理两端”的问题。
 
-## 适用场景
+## 经典例题：石子合并
 
-- 石子合并；
-- 矩阵链乘法；
-- 回文串相关问题；
-- 括号匹配与区间消除；
-- 区间上选择一个断点合并左右部分的问题。
+!!! example "例题：石子合并"
+    有 \(n\) 堆石子排成一行，第 \(i\) 堆有 \(a_i\) 个石子。每次可以合并相邻的两堆，代价为这两堆石子的总数。经过 \(n-1\) 次合并后，所有石子合成一堆，求最小总代价。
 
-## 基本思想
+这个问题的特点是：最后一次合并一定是把某个区间 \([l,r]\) 分成左右两部分，先分别合并成两堆，再把这两堆合并。
 
-如果一个区间 \([l,r]\) 可以通过枚举中间断点 \(k\) 拆成两个子区间：
+## 状态设计
 
-\[
-[l,k] \quad \text{和} \quad [k+1,r]
-\]
-
-那么常见转移为：
+设：
 
 \[
-f[l][r]=\min_{l\le k<r}\{f[l][k]+f[k+1][r]+cost(l,k,r)\}
+f[l][r] = \text{将区间 } [l,r] \text{ 内所有石子合并成一堆的最小代价}
 \]
 
-或者把 `min` 换成 `max`，取决于题目要求。
+如果最后一次合并时，断点为 \(k\)，那么先把 \([l,k]\) 合并成一堆，再把 \([k+1,r]\) 合并成一堆，最后合并这两堆。
+
+\[
+f[l][r]=\min_{l\le k<r}\{f[l][k]+f[k+1][r]+sum(l,r)\}
+\]
+
+其中：
+
+\[
+sum(l,r)=a_l+a_{l+1}+\cdots+a_r
+\]
+
+为了快速计算区间和，通常预处理前缀和：
+
+\[
+sum(l,r)=pre[r+1]-pre[l]
+\]
+
+边界为：
+
+\[
+f[i][i]=0
+\]
+
+因为只有一堆石子时不需要合并。
 
 <figure class="algo-figure" markdown>
 ![区间 DP 拆分示意图](../assets/images/dp/interval-dp-split.svg)
@@ -46,14 +63,57 @@ f[l][r]=\min_{l\le k<r}\{f[l][k]+f[k+1][r]+cost(l,k,r)\}
 
 ## 枚举顺序
 
-区间 DP 必须保证计算 \(f[l][r]\) 时，所有更短区间已经算好。因此常见写法是按区间长度枚举：
+计算 \(f[l][r]\) 时，需要用到更短的区间，例如 \(f[l][k]\) 和 \(f[k+1][r]\)。因此必须按区间长度从小到大枚举。
+
+常见顺序是：
+
+1. 枚举区间长度 `length`；
+2. 枚举左端点 `l`；
+3. 算出右端点 `r`；
+4. 枚举断点 `k`。
+
+## 模板代码：石子合并
+
+```python
+# 石子合并：线性版本，求最小合并代价
+
+a = [4, 5, 9, 4]
+n = len(a)
+INF = float('inf')
+
+# 前缀和，sum(l, r) = pre[r + 1] - pre[l]
+pre = [0]
+for x in a:
+    pre.append(pre[-1] + x)
+
+def range_sum(l, r):
+    return pre[r + 1] - pre[l]
+
+# f[l][r] 表示合并区间 [l, r] 的最小代价
+f = [[0] * n for _ in range(n)]
+
+for length in range(2, n + 1):
+    for l in range(0, n - length + 1):
+        r = l + length - 1
+        f[l][r] = INF
+        for k in range(l, r):
+            f[l][r] = min(
+                f[l][r],
+                f[l][k] + f[k + 1][r] + range_sum(l, r)
+            )
+
+print(f[0][n - 1])
+```
+
+## 通用区间 DP 模板
+
+如果一个题目可以枚举断点合并左右区间，通常可以套下面的结构：
 
 ```python
 n = 10
 INF = float('inf')
 f = [[0] * n for _ in range(n)]
 
-# length 表示区间长度
 for length in range(2, n + 1):
     for l in range(0, n - length + 1):
         r = l + length - 1
@@ -65,30 +125,24 @@ for length in range(2, n + 1):
 print(f[0][n - 1])
 ```
 
-也可以用从右向左枚举左端点的方式：
-
-```python
-n = 10
-INF = float('inf')
-f = [[0] * n for _ in range(n)]
-
-for l in range(n - 1, -1, -1):
-    for r in range(l + 1, n):
-        f[l][r] = INF
-        for k in range(l, r):
-            cost = 0
-            f[l][r] = min(f[l][r], f[l][k] + f[k + 1][r] + cost)
-```
+如果题目要求最大值，只需要把初始值和 `min` 改成对应的最大化形式。
 
 ## 记忆化搜索写法
 
-区间 DP 的递归形式通常更接近“定义”：
+区间 DP 的递归形式更接近状态定义，适合先想清楚转移：
 
 ```python
 from functools import lru_cache
 
 INF = float('inf')
-n = 10
+a = [4, 5, 9, 4]
+n = len(a)
+pre = [0]
+for x in a:
+    pre.append(pre[-1] + x)
+
+def range_sum(l, r):
+    return pre[r + 1] - pre[l]
 
 @lru_cache(None)
 def dfs(l, r):
@@ -96,8 +150,7 @@ def dfs(l, r):
         return 0
     res = INF
     for k in range(l, r):
-        cost = 0  # 根据题目修改
-        res = min(res, dfs(l, k) + dfs(k + 1, r) + cost)
+        res = min(res, dfs(l, k) + dfs(k + 1, r) + range_sum(l, r))
     return res
 
 print(dfs(0, n - 1))
@@ -105,34 +158,26 @@ print(dfs(0, n - 1))
 
 ## 区间消除类问题
 
-对于括号匹配、字符串消除一类问题，除了枚举断点，还可能有“两端匹配”的转移。
+有些区间 DP 不只是枚举断点，还会考虑两端是否能配对。例如括号匹配、回文子序列、字符串消除等问题。
 
-例如，如果 \(s_l\) 和 \(s_r\) 可以配对，并且中间 \([l+1,r-1]\) 可以完全消除，则：
+如果两端可以配对，可能有：
 
 \[
 f[l][r] \leftarrow f[l+1][r-1]
 \]
 
-如果一个区间可以拆成两段分别消除，则：
+如果区间可以拆成两段分别处理，可能有：
 
 \[
 f[l][r] \leftarrow f[l][k] \land f[k+1][r]
 \]
 
-这类问题要特别注意区间长度的奇偶性，因为一次消除两个字符时，能完全消除的区间长度通常是偶数。
-
-## 复杂度
-
-若区间长度为 \(n\)，状态有 \(O(n^2)\) 个。每个状态枚举一个断点 \(k\)，转移 \(O(n)\)。
-
-\[
-\text{时间复杂度}=O(n^3),\qquad \text{空间复杂度}=O(n^2)
-\]
+这类问题的共性是：计算大区间前，必须保证小区间已经处理完。
 
 ## 易错点
 
-!!! warning "常见错误"
-    - 先枚举左右端点，导致依赖的小区间还没算出。
-    - 边界状态没有设好，例如 \(f[i][i]\) 或空区间。
-    - 断点范围写错，通常是 \(l\le k<r\)。
-    - `cost(l,k,r)` 与区间前缀和有关时，忘记提前预处理。
+!!! warning "区间 DP 常见错误"
+    - 忘记初始化 \(f[i][i]\)。
+    - 区间长度从大到小枚举，导致依赖状态还没算出。
+    - 前缀和下标和区间下标混用。
+    - 断点范围写错。通常是 `for k in range(l, r)`，表示拆成 `[l, k]` 和 `[k+1, r]`。
