@@ -95,7 +95,15 @@ nav:
       - 树形 DP: algorithm-templates/tree-dp.md
       - 数位 DP: algorithm-templates/digit-dp.md
   - 数学:
-      - 数论基础: algorithm-templates/number-theory.md
+      - 数学总览: algorithm-templates/number-theory.md
+      - 快速幂: algorithm-templates/fast-power.md
+      - 最大公约数: algorithm-templates/gcd.md
+      - 最小公倍数: algorithm-templates/lcm.md
+      - 矩阵快速幂: algorithm-templates/matrix-fast-power.md
+      - 组合数: algorithm-templates/combination.md
+      - 质因数分解: algorithm-templates/prime-factorization.md
+      - 质数筛: algorithm-templates/prime-sieve.md
+      - 逆元: algorithm-templates/modular-inverse.md
   - 字符串:
       - 字符串基础: algorithm-templates/string-basics.md
   - 标签: tags.md

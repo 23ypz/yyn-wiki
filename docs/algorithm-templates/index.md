@@ -42,9 +42,20 @@ tags:
 - [树形DP](tree-dp.md)
 - [数位DP](digit-dp.md)
 
-## 数学与字符串
+## 数学
 
-- [数论基础](number-theory.md)
+- [数学总览](number-theory.md)
+- [快速幂](fast-power.md)
+- [最大公约数](gcd.md)
+- [最小公倍数](lcm.md)
+- [矩阵快速幂](matrix-fast-power.md)
+- [组合数](combination.md)
+- [质因数分解](prime-factorization.md)
+- [质数筛](prime-sieve.md)
+- [逆元](modular-inverse.md)
+
+## 字符串
+
 - [字符串基础](string-basics.md)
 
 
@@ -62,7 +73,15 @@ tags:
 - [广度优先搜索BFS](bfs.md)
 - [排序](sorting.md)
 - [数位DP](digit-dp.md)
-- [数论基础](number-theory.md)
+- [数学总览](number-theory.md)
+- [快速幂](fast-power.md)
+- [最大公约数](gcd.md)
+- [最小公倍数](lcm.md)
+- [矩阵快速幂](matrix-fast-power.md)
+- [组合数](combination.md)
+- [质因数分解](prime-factorization.md)
+- [质数筛](prime-sieve.md)
+- [逆元](modular-inverse.md)
 - [最短路](shortest-path.md)
 - [最近公共祖先](lca.md)
 - [有序列表](sorted-list.md)
