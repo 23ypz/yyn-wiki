@@ -77,11 +77,24 @@ nav:
       - 前缀和: algorithm-templates/prefix-sum.md
       - 差分: algorithm-templates/difference.md
   - 数据结构:
-      - 并查集: algorithm-templates/dsu.md
-      - 堆: algorithm-templates/heap.md
-      - 单调数据结构: algorithm-templates/monotonic-structures.md
-      - 有序列表: algorithm-templates/sorted-list.md
-      - 树形数据结构: algorithm-templates/tree-data-structures.md
+      - 数据结构总览: algorithm-templates/data-structures.md
+      - 并查集:
+          - 普通并查集: algorithm-templates/dsu-basic.md
+          - 带权并查集: algorithm-templates/dsu-weighted.md
+      - 堆:
+          - 对顶堆: algorithm-templates/two-heaps.md
+          - 懒删除堆: algorithm-templates/lazy-heap.md
+      - 单调数据结构:
+          - 单调栈: algorithm-templates/monotonic-stack.md
+          - 单调队列: algorithm-templates/monotonic-queue.md
+      - 有序列表:
+          - SortedList: algorithm-templates/sorted-list.md
+      - 树形数据结构:
+          - 树状数组: algorithm-templates/fenwick-tree.md
+          - 区间修改区间求和树状数组: algorithm-templates/fenwick-range.md
+          - 线段树: algorithm-templates/segment-tree.md
+          - Lazy 线段树: algorithm-templates/lazy-segment-tree.md
+          - ST 表: algorithm-templates/sparse-table.md
   - 图论与树:
       - 图论与树总览: algorithm-templates/graph-tree.md
       - 广度优先搜索 BFS:
