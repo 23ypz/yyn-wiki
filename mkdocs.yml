@@ -67,6 +67,16 @@ extra_css:
 
 nav:
   - 首页: index.md
+  - 比赛相关:
+      - 比赛相关总览: contest/index.md
+      - ICPC: contest/icpc.md
+      - CCPC: contest/ccpc.md
+      - XCPC: contest/xcpc.md
+      - 蓝桥杯: contest/lanqiao.md
+      - 码蹄杯: contest/mati-cup.md
+      - 天梯赛: contest/gplt.md
+      - 百度之星: contest/baidu-star.md
+      - 参赛路线建议: contest/roadmap.md
   - 总览: algorithm-templates/index.md
   - 基础:
       - 基础总览: algorithm-templates/basic.md
@@ -150,4 +160,3 @@ nav:
       - 字符串哈希: algorithm-templates/string-hash.md
       - Trie: algorithm-templates/trie.md
       - 01 Trie: algorithm-templates/binary-trie.md
-  - 标签: tags.md
