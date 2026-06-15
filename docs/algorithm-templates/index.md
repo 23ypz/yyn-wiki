@@ -106,3 +106,11 @@ tags:
 - [Floyd 算法](floyd.md)
 - [LCA 倍增](lca-binary-lifting.md)
 - [树上差分](tree-difference.md)
+
+
+## 前缀和与差分
+
+- [一维前缀和](prefix-sum-1d.md)：数组区间和查询。
+- [二维前缀和](prefix-sum-2d.md)：矩阵子矩形和查询。
+- [一维差分](difference-1d.md)：数组区间加。
+- [二维差分](difference-2d.md)：矩阵子矩形加。

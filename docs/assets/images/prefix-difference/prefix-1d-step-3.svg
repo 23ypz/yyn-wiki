@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560"><style>
+text { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #243447; }
+.title { font-size: 28px; font-weight: 700; }
+.subtitle { font-size: 19px; fill: #5b6b7a; }
+.normal { font-size: 20px; }
+.small { font-size: 15px; }
+.tiny { font-size: 13px; fill: #5b6b7a; }
+.muted { fill: #5b6b7a; }
+.cell { fill:#eef3ff; stroke:#4c6fff; stroke-width:2; }
+.hot { fill:#fff3cd; stroke:#e0ad00; stroke-width:2.2; }
+.good { fill:#d7fbe8; stroke:#2ea44f; stroke-width:2.2; }
+.bad { fill:#ffe6e6; stroke:#d64242; stroke-width:2.2; }
+.gray { fill:#f4f5f7; stroke:#c7ccd1; stroke-width:1.5; }
+.white { fill:#ffffff; stroke:#c7ccd1; stroke-width:1.5; }
+.arrow { stroke:#3757d6; stroke-width:3; fill:none; marker-end:url(#arrow); }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+    <path d="M0,0 L10,4 L0,8 z" fill="#3757d6"/>
+  </marker>
+</defs><rect width="100%" height="100%" fill="#ffffff"/><text x="44" y="48" class="title">一维前缀和 · 步骤 3</text><text x="44" y="82" class="subtitle">查询区间 [l,r] 时，用右端前缀减去左端前一个前缀。</text><text x="90" y="130" class="normal">原数组 a</text><rect x="90" y="155" width="86" height="58" rx="10" class="cell"/><text x="133.0" y="191" text-anchor="middle" class="normal">2</text><text x="133.0" y="233" text-anchor="middle" class="tiny">i=1</text><rect x="196" y="155" width="86" height="58" rx="10" class="hot"/><text x="239.0" y="191" text-anchor="middle" class="normal">4</text><text x="239.0" y="233" text-anchor="middle" class="tiny">i=2</text><rect x="302" y="155" width="86" height="58" rx="10" class="hot"/><text x="345.0" y="191" text-anchor="middle" class="normal">1</text><text x="345.0" y="233" text-anchor="middle" class="tiny">i=3</text><rect x="408" y="155" width="86" height="58" rx="10" class="hot"/><text x="451.0" y="191" text-anchor="middle" class="normal">3</text><text x="451.0" y="233" text-anchor="middle" class="tiny">i=4</text><rect x="514" y="155" width="86" height="58" rx="10" class="cell"/><text x="557.0" y="191" text-anchor="middle" class="normal">5</text><text x="557.0" y="233" text-anchor="middle" class="tiny">i=5</text><text x="90" y="285" class="normal">前缀数组 s</text><rect x="90" y="310" width="86" height="58" rx="10" class="cell"/><text x="133.0" y="346" text-anchor="middle" class="normal">0</text><text x="133.0" y="388" text-anchor="middle" class="tiny">s[0]</text><rect x="196" y="310" width="86" height="58" rx="10" class="good"/><text x="239.0" y="346" text-anchor="middle" class="normal">2</text><text x="239.0" y="388" text-anchor="middle" class="tiny">s[1]</text><rect x="302" y="310" width="86" height="58" rx="10" class="cell"/><text x="345.0" y="346" text-anchor="middle" class="normal">6</text><text x="345.0" y="388" text-anchor="middle" class="tiny">s[2]</text><rect x="408" y="310" width="86" height="58" rx="10" class="cell"/><text x="451.0" y="346" text-anchor="middle" class="normal">7</text><text x="451.0" y="388" text-anchor="middle" class="tiny">s[3]</text><rect x="514" y="310" width="86" height="58" rx="10" class="good"/><text x="557.0" y="346" text-anchor="middle" class="normal">10</text><text x="557.0" y="388" text-anchor="middle" class="tiny">s[4]</text><rect x="620" y="310" width="86" height="58" rx="10" class="cell"/><text x="663.0" y="346" text-anchor="middle" class="normal">15</text><text x="663.0" y="388" text-anchor="middle" class="tiny">s[5]</text><rect x="760" y="170" width="280" height="160" rx="14" class="gray"/><text x="790" y="225" class="normal">sum(l,r) = s[r] - s[l-1]</text><text x="790" y="270" class="normal">左边多出来的前缀要减掉</text><rect x="70" y="470" width="960" height="58" rx="14" class="gray"/><text x="105" y="506" class="normal muted">• 区间 [l,r] 的和等于前 r 个元素减去前 l-1 个元素。</text></svg>

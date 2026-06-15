@@ -74,8 +74,13 @@ nav:
       - 排序: algorithm-templates/sorting.md
       - 位运算: algorithm-templates/bitwise.md
   - 前缀与差分:
-      - 前缀和: algorithm-templates/prefix-sum.md
-      - 差分: algorithm-templates/difference.md
+      - 前缀和与差分总览: algorithm-templates/prefix-difference.md
+      - 前缀和:
+          - 一维前缀和: algorithm-templates/prefix-sum-1d.md
+          - 二维前缀和: algorithm-templates/prefix-sum-2d.md
+      - 差分:
+          - 一维差分: algorithm-templates/difference-1d.md
+          - 二维差分: algorithm-templates/difference-2d.md
   - 数据结构:
       - 数据结构总览: algorithm-templates/data-structures.md
       - 并查集:
