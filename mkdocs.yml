@@ -65,14 +65,22 @@ extra_javascript:
 extra_css:
   - assets/stylesheets/extra.css
 
-# 顶部导航采用“大类”结构；左侧导航只显示当前大类下的小类页面。
 nav:
   - 首页: index.md
   - 总览: algorithm-templates/index.md
   - 基础:
-      - 二分: algorithm-templates/binary-search.md
-      - 排序: algorithm-templates/sorting.md
-      - 位运算: algorithm-templates/bitwise.md
+      - 基础总览: algorithm-templates/basic.md
+      - 二分:
+          - 二分总览: algorithm-templates/binary-search.md
+          - 基础二分: algorithm-templates/binary-search-basic.md
+          - 二分答案: algorithm-templates/binary-search-answer.md
+      - 排序:
+          - 排序总览: algorithm-templates/sorting.md
+          - 简单排序: algorithm-templates/sorting-basic.md
+          - 自定义排序: algorithm-templates/sorting-custom.md
+      - 位运算:
+          - 位运算总览: algorithm-templates/bitwise.md
+          - 线性基: algorithm-templates/xor-basis.md
   - 前缀与差分:
       - 前缀和与差分总览: algorithm-templates/prefix-difference.md
       - 前缀和:
