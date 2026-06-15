@@ -136,5 +136,10 @@ nav:
       - 质数筛: algorithm-templates/prime-sieve.md
       - 逆元: algorithm-templates/modular-inverse.md
   - 字符串:
-      - 字符串基础: algorithm-templates/string-basics.md
+      - 字符串总览: algorithm-templates/string.md
+      - KMP: algorithm-templates/kmp.md
+      - Z 函数: algorithm-templates/z-function.md
+      - 字符串哈希: algorithm-templates/string-hash.md
+      - Trie: algorithm-templates/trie.md
+      - 01 Trie: algorithm-templates/binary-trie.md
   - 标签: tags.md

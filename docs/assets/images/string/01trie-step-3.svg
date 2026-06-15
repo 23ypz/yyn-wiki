@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560"><style>
+text { font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; fill: #243447; }
+.title { font-size: 28px; font-weight: 700; }
+.subtitle { font-size: 19px; fill: #5b6b7a; }
+.normal { font-size: 20px; }
+.small { font-size: 15px; }
+.tiny { font-size: 13px; fill: #5b6b7a; }
+.muted { fill: #5b6b7a; }
+.cell { fill:#eef3ff; stroke:#4c6fff; stroke-width:2; }
+.hot { fill:#fff3cd; stroke:#e0ad00; stroke-width:2.2; }
+.good { fill:#d7fbe8; stroke:#2ea44f; stroke-width:2.2; }
+.bad { fill:#ffe6e6; stroke:#d64242; stroke-width:2.2; }
+.gray { fill:#f4f5f7; stroke:#c7ccd1; stroke-width:1.5; }
+.white { fill:#fff; stroke:#c7ccd1; stroke-width:1.5; }
+.edge { stroke:#768399; stroke-width:2.4; }
+.arrow { stroke:#3757d6; stroke-width:3; fill:none; marker-end:url(#arrow); }
+.arrow2 { stroke:#d64242; stroke-width:3; fill:none; marker-end:url(#arrow2); }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#3757d6"/></marker>
+  <marker id="arrow2" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#d64242"/></marker>
+</defs><rect width="100%" height="100%" fill="#ffffff"/><text x="44" y="48" class="title">01 Trie 最大异或 · 步骤 3</text><text x="44" y="82" class="subtitle">如果相反位存在，该位异或结果为 1，答案加上 2^i。</text><text x="120" y="138" class="normal">查询数 x 的二进制</text><rect x="120" y="160" width="58" height="58" rx="10" class="good"/><text x="149.0" y="197" text-anchor="middle" class="normal">1</text><text x="149.0" y="242" text-anchor="middle" class="tiny">0</text><rect x="186" y="160" width="58" height="58" rx="10" class="good"/><text x="215.0" y="197" text-anchor="middle" class="normal">1</text><text x="215.0" y="242" text-anchor="middle" class="tiny">1</text><rect x="252" y="160" width="58" height="58" rx="10" class="hot"/><text x="281.0" y="197" text-anchor="middle" class="normal">0</text><text x="281.0" y="242" text-anchor="middle" class="tiny">2</text><rect x="318" y="160" width="58" height="58" rx="10" class="cell"/><text x="347.0" y="197" text-anchor="middle" class="normal">0</text><text x="347.0" y="242" text-anchor="middle" class="tiny">3</text><rect x="384" y="160" width="58" height="58" rx="10" class="cell"/><text x="413.0" y="197" text-anchor="middle" class="normal">1</text><text x="413.0" y="242" text-anchor="middle" class="tiny">4</text><rect x="110" y="300" width="430" height="80" rx="14" class="gray"/><text x="145" y="350" class="normal">每一位尽量让 x_bit xor y_bit = 1</text><rect x="650" y="135" width="330" height="250" rx="14" class="gray"/><text x="700" y="220" class="normal">找到相反位</text><text x="700" y="280" class="normal">ans |= 1 << i</text><rect x="70" y="470" width="960" height="58" rx="14" class="gray"/><text x="105" y="506" class="normal muted">• 走到相反位时，当前位异或为 1，答案可以加上这一位的权值。</text></svg>
