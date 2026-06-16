@@ -1,185 +1,113 @@
----
-tags:
-  - yyn
-  - 算法模板
-  - 动态规划
----
-
 # 数位 DP
 
-数位 DP 用于统计一个整数区间内满足某种性质的数字数量。典型做法是把数字按十进制位拆开，从高位到低位递归枚举，同时记录“当前是否贴着上界”“是否已经开始填数字”等状态。
+数位 DP 用来统计区间内满足某些条件的整数个数。它的核心思想是：**把一个数按十进制位拆开，从高位到低位逐位决定填什么数字**。
 
 常见问题包括：
 
-- 统计 \([L,R]\) 中不含某个数字的数；
+- 统计 $[L,R]$ 中不含某个数字的数有多少个；
 - 统计数字和满足条件的数；
-- 统计相邻数位不相同的数；
-- 统计二进制中 1 的个数满足条件的数。
+- 统计相邻数位满足某种关系的数；
+- 统计某个数位出现次数。
 
-## 基本套路
+## 为什么写成 f(R) - f(L-1)
 
-如果要统计 \([L,R]\)，通常先设计前缀函数：
+数位 DP 通常先写：
 
-\[
-ans(L,R)=F(R)-F(L-1)
-\]
+$$
+F(x)=\text{小于等于 } x \text{ 的合法数字个数}
+$$
 
-其中 \(F(x)\) 表示 \([0,x]\) 中满足条件的数字数量。这样问题就转化为：如何统计不超过上界 \(x\) 的合法数。
+那么区间 $[L,R]$ 的答案是：
 
-## 经典例题：数字和取模
+$$
+F(R)-F(L-1)
+$$
 
-!!! example "例题：统计数字和能被 m 整除的数"
-    给定 \(L,R,m\)，统计区间 \([L,R]\) 中有多少个正整数的各位数字之和能被 \(m\) 整除。
+这样可以只处理一个上界，代码比同时维护上下界更简单。
 
-    例如，当 \(m=3\) 时，数字 `12` 的数字和为 `1+2=3`，可以被 `3` 整除，因此它是合法数字。
+## 模板参数解释
 
-这个问题适合用数位 DP，因为我们需要在一个范围内统计数字，并且限制条件只和“已经填过的数位和模 \(m\) 的值”有关。
-
-## 状态设计
-
-设上界数字为数组 \(s\)，从高位到低位处理。定义递归状态：
-
-\[
-dfs(i, is\_num, is\_limit, rem)
-\]
-
-各参数含义如下：
-
-| 参数 | 含义 |
-|---|---|
-| `i` | 当前处理到第几位 |
-| `is_num` | 前面是否已经填过非前导零数字 |
-| `is_limit` | 当前前缀是否仍然贴着上界 |
-| `rem` | 当前已填数字和对 \(m\) 取模后的结果 |
-
-如果 `is_limit=True`，当前位最多只能填上界对应位；否则可以填到 `9`。
-
-\[
-up = \begin{cases}
-s[i], & is\_limit=True \\
-9, & is\_limit=False
-\end{cases}
-\]
-
-如果当前位填入 \(d\)，那么下一层的余数为：
-
-\[
-rem'=(rem+d)\bmod m
-\]
-
-<figure class="algo-figure" markdown>
-![数位 DP 状态树示意图](../assets/images/dp/digit-dp-tree.svg)
-<figcaption>图 1：如果当前位填了比上界小的数字，后续位就不再受上界限制。</figcaption>
-</figure>
-
-## 模板代码
-
-下面代码保留了 `is_num`，用于处理前导零。最终只统计正整数；如果题目要把 `0` 也算入答案，需要单独处理边界。
+常用模板使用：
 
 ```python
-from functools import lru_cache
-
-MOD = 3
-
-def count_leq(x: int) -> int:
-    """统计 [1, x] 中数字和能被 MOD 整除的数的个数。"""
-    if x <= 0:
-        return 0
-
-    s = list(map(int, str(x)))
-    n = len(s)
-
-    @lru_cache(None)
-    def dfs(i: int, is_num: bool, is_limit: bool, rem: int) -> int:
-        """
-        i: 当前处理的位置
-        is_num: 前面是否已经开始填数字
-        is_limit: 是否受到上界限制
-        rem: 当前数字和模 MOD 的结果
-        """
-        if i == n:
-            return int(is_num and rem == 0)
-
-        res = 0
-
-        # 继续跳过当前位置，保持前导零状态
-        if not is_num:
-            res += dfs(i + 1, False, False, rem)
-
-        up = s[i] if is_limit else 9
-        low = 0 if is_num else 1
-
-        for d in range(low, up + 1):
-            new_rem = (rem + d) % MOD
-            res += dfs(i + 1, True, is_limit and d == up, new_rem)
-
-        return res
-
-    return dfs(0, False, True, 0)
-
-def solve(L: int, R: int) -> int:
-    return count_leq(R) - count_leq(L - 1)
-
-print(solve(1, 100))
+dfs(i, is_num, is_limit, tar)
 ```
 
-## 通用模板
+含义如下：
 
-如果题目条件不同，只需要把 `state` 的含义和更新方式改掉。
+- `i`：当前处理到第几位。
+- `is_num`：前面是否已经填过非前导零数字。
+- `is_limit`：当前是否受到上界限制。
+- `tar`：题目需要维护的状态，需要按具体题意修改。
+
+如果 `is_limit=True`，当前位最多只能填上界对应位：
+
+```python
+up = s[i] if is_limit else 9
+```
+
+如果还没有开始填数字，可以继续跳过当前位，也就是继续处理前导零。
+
+## 代码模板
+
+下面给出上下界数位 DP 模板。模板中的 `tar` 是占位状态，需要根据题目修改成数字和、余数、上一位数字等信息。
 
 ```python
 from functools import lru_cache
 
 def f(h):
-    """统计小于等于 h 的满足条件的数字个数。"""
-    if h < 0:
-        return 0
-
+    """统计小于等于h的满足条件的数字个数"""
     s = list(map(int, str(h)))
     n = len(s)
 
     @lru_cache(None)
-    def dfs(i, is_num, is_limit, state):
+    def dfs(i, is_num, is_limit, tar):
+        """
+        :param i: 当前处理的位置
+        :param is_num: 是否已经开始填数字（处理前导零）
+        :param is_limit: 是否受到上界限制
+        :param tar: 根据题意修改的条件参数
+        """
         if i == n:
-            # 根据题意判断 state 是否合法
-            return int(is_num and state == 0)
-
-        res = 0
-
-        if not is_num:
-            res += dfs(i + 1, False, False, state)
-
+            return is_num and tar  # 如果前导零对题目没有影响 则可以不用 is_num 参数
+        
         up = s[i] if is_limit else 9
-        low = 0 if is_num else 1
+        
+        if not is_num:
+            # 还处于前导 0 状态  继续填 0
+            res = dfs(i + 1, is_num, False, tar)
+        else:
+            res = dfs(i + 1, is_num, is_limit and up == 0, tar)
 
-        for d in range(low, up + 1):
-            new_state = state  # 根据题意修改
-            res += dfs(i + 1, True, is_limit and d == up, new_state)
-
+        for d in range(1, up + 1):
+            res += dfs(i + 1, is_num, is_limit and d == up, tar)
         return res
 
     return dfs(0, False, True, 0)
 
 def main(l, r):
+    """统计区间[l,r]内满足条件的数字个数"""
     print(f(r) - f(l - 1))
+
+# 示例使用
+main(1, 100)
 ```
 
-## 状态参数怎么改
+## 使用模板时怎么改
 
-数位 DP 的难点通常不在代码框架，而在 `state` 的设计。常见状态包括：
+以“统计数字和能被 $m$ 整除”为例，可以把 `tar` 改成当前数字和对 $m$ 的余数 `rem`。
 
-- 数字和：`sum` 或 `sum % mod`；
-- 上一位数字：`last`，用于判断相邻位是否合法；
-- 是否出现过某个数字：`has_digit`；
-- 余数：`rem`，用于统计数字本身能否被某个数整除；
-- 数位计数：例如某个数字出现次数。
+每次填入数字 `d`，状态更新为：
 
-例如，如果要统计相邻数位不相等的数，可以把 `state` 改为上一位数字 `last`。转移时只允许选择 `d != last` 的数字。
+$$
+rem' = (rem + d) \bmod m
+$$
+
+递归结束时，如果已经形成数字，并且余数为 0，则说明这个数合法。
 
 ## 易错点
 
-!!! warning "数位 DP 常见错误"
-    - `is_limit` 更新条件写错。只有当前位填到上界对应数字时，下一位才继续受限。
-    - 前导零处理不清楚，导致把空数字或数字 `0` 误算进答案。
-    - 记忆化缓存包含了不该缓存的状态。通常 `is_limit=True` 时状态和具体上界有关，不能随便复用；使用 `lru_cache` 时把 `is_limit` 放入参数即可。
-    - 区间统计时忘记用 \(F(R)-F(L-1)\)。
+- `is_num` 用来处理前导零，如果题目要统计数字 0，需要单独考虑边界。
+- `is_limit and d == up` 表示只有当前位也贴着上界填，下一位才继续受限制。
+- `lru_cache` 适合状态数量不太大的情况；如果 `tar` 维度太大，需要重新设计状态。
+- 区间统计通常写成 `f(r) - f(l - 1)`，初学时不建议直接在一个 DFS 中同时处理两个边界，容易增加状态复杂度。

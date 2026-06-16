@@ -1,201 +1,139 @@
----
-tags:
-  - yyn
-  - 算法模板
-  - 动态规划
----
-
 # 树形 DP
 
-树形 DP 是在树结构上进行的动态规划。由于树没有环，一个节点的不同子树之间天然相互独立，因此很多问题可以先计算子节点，再把子节点的信息合并到父节点。
+树形 DP 是把动态规划放到树结构上做。与线性 DP 不同，树形 DP 的状态通常定义在节点或子树上。
 
-## 基本思想
+树形 DP 的核心是：**一个节点的答案通常由它的若干子节点答案合并得到**。
 
-树形 DP 通常以某个节点 \(u\) 为根，定义：
+## 树形 DP 的基本形式
 
-\[
-f[u] = \text{以 } u \text{ 为根的子树中的答案}
-\]
+如果把树以某个节点为根，那么常见状态可以写成：
 
-如果状态需要区分选择情况，也可以写成：
+$$
+f[x] = \text{以 } x \text{ 为根的子树中的答案}
+$$
 
-\[
-f[u][0],\ f[u][1]
-\]
+因为父节点依赖子节点，所以通常需要后序处理：先处理所有儿子，再回到父节点。
 
-例如：
-
-- \(f[u][0]\)：不选节点 \(u\) 时，\(u\) 子树内的最优值；
-- \(f[u][1]\)：选节点 \(u\) 时，\(u\) 子树内的最优值。
-
-<figure class="algo-figure" markdown>
-![树形 DP 子树合并示意图](../assets/images/dp/tree-dp-merge.svg)
-<figcaption>图 1：树形 DP 常在 DFS 回溯阶段把孩子的状态合并到父节点。</figcaption>
-</figure>
-
-## 经典例题一：没有上司的舞会
-
-!!! example "例题：没有上司的舞会模型"
-    给定一棵树，每个节点有一个快乐值。选择若干个节点参加舞会，要求任意父子节点不能同时被选，求最大快乐值和。
-
-这个问题的关键是：对每个节点 \(u\)，只需要考虑“选 \(u\)”和“不选 \(u\)”两种状态。
-
-### 状态设计
-
-设：
-
-\[
-f[u][0] = \text{不选 } u \text{ 时，} u \text{ 子树内的最大快乐值}
-\]
-
-\[
-f[u][1] = \text{选 } u \text{ 时，} u \text{ 子树内的最大快乐值}
-\]
-
-如果选 \(u\)，那么它的所有孩子都不能选：
-
-\[
-f[u][1] = val[u] + \sum_{v\in son(u)} f[v][0]
-\]
-
-如果不选 \(u\)，那么每个孩子可选可不选，取较大值：
-
-\[
-f[u][0] = \sum_{v\in son(u)} \max(f[v][0], f[v][1])
-\]
-
-### 模板代码
+递归 DFS 的基本框架是：
 
 ```python
-n = 5
-val = [0, 3, 2, 1, 10, 1]  # 节点权值，1-indexed
-edges = [(1, 2), (1, 3), (2, 4), (2, 5)]
-
-g = [[] for _ in range(n + 1)]
-for u, v in edges:
-    g[u].append(v)
-    g[v].append(u)
-
-f = [[0, 0] for _ in range(n + 1)]
-
-def dfs(u, fa):
-    f[u][1] = val[u]
-    for v in g[u]:
-        if v == fa:
-            continue
-        dfs(v, u)
-        f[u][0] += max(f[v][0], f[v][1])
-        f[u][1] += f[v][0]
-
-dfs(1, 0)
-print(max(f[1][0], f[1][1]))
+def dfs(fa, x):
+    for y in g[x]:
+        if y != fa:
+            child_state = dfs(x, y)
+            # 用 child_state 更新 x 的状态
 ```
 
-## 经典例题二：树的直径
+## 递归求解：树的直径
 
-!!! example "例题：树的直径"
-    给定一棵无权树，求树上任意两个节点之间的最长简单路径长度。
+### 原理说明
 
-这也是树形 DP 的经典问题。对每个节点 \(u\)，维护从 \(u\) 向下走到子树中的最长链长度。经过 \(u\) 的最长路径，可能由两个不同孩子子树中的最长链拼接而成。
+树的直径是树上任意两点之间的最长简单路径。
 
-### 状态设计
+如果一条最长路径经过节点 `x`，那么它可能由 `x` 的两条最长向下路径拼成：
 
-设：
+$$
+ans = \max(ans, longest_1(x)+longest_2(x))
+$$
 
-\[
-down[u] = \text{从 } u \text{ 出发向下走的最长链长度}
-\]
+模板中的 `mx` 表示当前已经见过的最大子树长度，`l` 表示从当前节点走向某个子节点方向能得到的长度。每次遇到一条新的子树路径，就用 `mx + l` 尝试更新答案。
 
-当处理 \(u\) 的一个孩子 \(v\) 时，候选链长度为：
-
-\[
-down[v]+1
-\]
-
-如果当前节点有两条最长的向下链，长度分别为 \(mx_1\) 和 \(mx_2\)，那么经过 \(u\) 的最长路径长度为：
-
-\[
-mx_1+mx_2
-\]
-
-### 模板代码：递归求解
+### 代码模板
 
 ```python
-n = 5
-edges = [(1, 2), (1, 3), (2, 4), (2, 5)]
+# 求解树的直径
+# 对每个节点维护最大和次大子树长度
+def main():
+    n = int(input())
+    g = [[] for i in range(n)]
+    for i in range(n - 1):
+        u, v = map(int, input().split())
+        u, v = u - 1, v - 1  # 转换为0-indexed
+        g[u].append(v)
+        g[v].append(u)
 
-g = [[] for _ in range(n + 1)]
-for u, v in edges:
-    g[u].append(v)
-    g[v].append(u)
+    ans = 0
 
-ans = 0
+    def dfs(fa, x):
+        """DFS求解树的直径"""
+        nonlocal ans
+        mx = 0  # 当前节点的最大子树长度
+        for y in g[x]:
+            if y != fa:
+                l = dfs(x, y) + 1  # 子树长度
+                ans = max(ans, mx + l)  # 更新答案：经过当前节点的路径
+                mx = max(mx, l)  # 更新最大子树长度
+        return mx
 
-def dfs(u, fa):
-    """返回从 u 向下走的最长链长度。"""
-    global ans
-    mx = 0
-    for v in g[u]:
-        if v == fa:
-            continue
-        length = dfs(v, u) + 1
-        ans = max(ans, mx + length)
-        mx = max(mx, length)
-    return mx
+    dfs(-1, 0)  # 从根节点开始
+    print("树的直径:", ans)
 
-dfs(1, 0)
-print(ans)
+# 示例使用（需要手动输入数据）
+# main()
 ```
 
-## 非递归处理方式
+## 递推求解：树的直径
 
-如果树很深，递归可能爆栈。可以先得到父子关系和遍历顺序，再逆序处理。
+### 原理说明
+
+递推写法的思想是先构造一个遍历顺序，再反向处理节点。反向处理时，子节点会先于父节点更新，因此可以把子节点的最长下行链贡献给父节点。
+
+模板中：
+
+- `dp[i][1]` 表示节点 `i` 当前维护的最长下行链；
+- `dp[i][0]` 表示节点 `i` 当前维护的次长下行链；
+- 对每个节点，最长链和次长链相加，就可以得到一条经过该节点的候选直径。
+
+### 代码模板
 
 ```python
-n = 5
-edges = [(1, 2), (1, 3), (2, 4), (2, 5)]
+# 求解树的直径
+# 对每个节点维护最大和次大子树长度
+def main():
+    n = int(input())
+    g = [[] for i in range(n)]
+    for i in range(n - 1):
+        u, v = map(int, input().split())
+        u, v = u - 1, v - 1  # 转换为0-indexed
+        g[u].append(v)
+        g[v].append(u)
 
-g = [[] for _ in range(n + 1)]
-for u, v in edges:
-    g[u].append(v)
-    g[v].append(u)
+    # BFS构建拓扑序
+    stk = [1]
+    order = []
+    pa = [i for i in range(n + 1)]
+    while stk:
+        u = stk.pop()
+        order.append(u)
+        for v in g[u]:
+            if pa[u] != v:
+                pa[v] = u
+                stk.append(v)
 
-parent = [0] * (n + 1)
-order = [1]
-parent[1] = -1
+    # dp[i][0]表示次大值，dp[i][1]表示最大值
+    dp = [[0] * 2 for i in range(n + 1)]
+    for u in reversed(order[1:]):  # 从叶子节点开始递推
+        v = pa[u]
+        dp[u][1] += 1
+        if dp[v][1] < dp[u][1]:
+            dp[v][1], dp[v][0] = dp[u][1], dp[v][1]
+        else:
+            if dp[v][0] < dp[u][1]:
+                dp[v][0] = dp[u][1]
+    dp[1][1] += 1
+    
+    ans = 0
+    for i in range(1, n + 1):
+        ans = max(ans, sum(dp[i]) - 1)
+    print("树的直径:", ans)
 
-for u in order:
-    for v in g[u]:
-        if v == parent[u]:
-            continue
-        parent[v] = u
-        order.append(v)
-
-# down[u] 表示从 u 向下的最长链
-# best[u] 表示从 u 向下的次长链
-down = [0] * (n + 1)
-best = [0] * (n + 1)
-ans = 0
-
-for u in reversed(order):
-    for v in g[u]:
-        if parent[v] != u:
-            continue
-        length = down[v] + 1
-        ans = max(ans, down[u] + length)
-        if length > down[u]:
-            best[u] = down[u]
-            down[u] = length
-        elif length > best[u]:
-            best[u] = length
-
-print(ans)
+# 示例使用（需要手动输入数据）
+# main()
 ```
 
 ## 易错点
 
-!!! warning "树形 DP 常见错误"
-    - 无向树 DFS 时忘记传父节点，导致在父子之间反复递归。
-    - 状态合并写在 DFS 前序阶段，而不是子节点处理完成后的回溯阶段。
-    - 根节点选择不影响树形 DP 的最终答案，但会影响父子方向，需要保持一致。
-    - Python 中树很深时需要考虑递归深度限制或改用非递归写法。
+- 树形 DP 通常要记录父节点，避免从儿子又走回父亲。
+- 递归写法在深树中可能爆栈，必要时可以改成迭代。
+- 直径问题中，经过某个点的最长路径通常来自两条不同子树方向，不能用同一条链重复计算。
+- 如果节点编号从 0 开始或 1 开始，数组大小和初始根节点要保持一致。
